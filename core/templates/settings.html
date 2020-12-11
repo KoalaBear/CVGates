@@ -1,0 +1,101 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Settings {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<main class="content">
+
+    {% include 'includes/navigation.html' %}
+
+    <div class="row">
+        <div class="col-12 col-xl-8">
+            <div class="card card-body bg-white border-light shadow-sm mb-4">
+                <h2 class="h5 mb-5">General information</h2>
+                <form>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="first_name">First Name</label>
+                                <input class="form-control" id="first_name" placeholder="Enter your first name"
+                                       required type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="last_name">Last Name</label>
+                                <input class="form-control" id="last_name" placeholder="Also your last name" required
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-3">
+                            <label for="birthday">Birthday</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><span class="far fa-calendar-alt"></span></span>
+                                <input class="form-control" data-datepicker="" id="birthday" placeholder="dd/mm/yyyy"
+                                       required type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="gender">Gender</label>
+                            <select aria-label="Gender select example" class="form-select mb-0" id="gender">
+                                <option selected>Gender</option>
+                                <option value="1">Female</option>
+                                <option value="2">Male</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input class="form-control" id="email" placeholder="name@company.com" required
+                                       type="email">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input class="form-control" id="phone" placeholder="+12-345 678 910" required
+                                       type="number">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-xl-4">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="card border-light text-center p-0">
+                        <div class="profile-cover rounded-top"
+                             data-background="/static/assets/img/profile-cover.jpg"></div>
+                        <div class="card-body pb-5">
+                            <img alt="Neil Portrait"
+                                 class="user-avatar large-avatar rounded-circle mx-auto mt-n7 mb-4" src="/static/assets/img/team/profile-picture-3.jpg">
+                            <h4 class="h3">
+                                {{ request.user.username }}
+                            </h4>
+                            <h5 class="font-weight-normal">
+                                {{ request.user.email }}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'includes/footer.html' %}
+
+</main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
