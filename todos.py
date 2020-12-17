@@ -1,8 +1,6 @@
 # TODO: Implement CV Recognition for plates
 # TODO: Implement CV Results comparsion with DB plates
 
-# TODO: Let residents edit their registered plates
-# TODO: Limit plates creation by the resident's limit
 # TODO: Add bootstrap alerts on CRUD actions
 
 

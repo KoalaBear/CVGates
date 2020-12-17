@@ -4,8 +4,19 @@ from platenumbers.forms import PlateNumberForm
 from platenumbers.models import PlateNumber
 
 
+def has_available_permits(request):
+    if request.user.is_superuser:
+        return True
+
+    used_permits = len(PlateNumber.objects.filter(user=request.user))
+    if request.user.permits > used_permits:
+        return True
+    # TODO: Reached limit - can't create more error
+    return False
+
+
 def plate(request):
-    if request.method == "POST":
+    if request.method == "POST" and has_available_permits(request):
         form = PlateNumberForm(request.POST)
         if form.is_valid():
             try:
