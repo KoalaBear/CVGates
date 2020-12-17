@@ -2,8 +2,8 @@
 # TODO: Implement CV Results comparsion with DB plates
 
 # TODO: Let residents edit their registered plates
-# TODO: Limit Plate number actions to owners / admins
 # TODO: Limit plates creation by the resident's limit
+# TODO: Add bootstrap alerts on CRUD actions
 
 
 # TODO: FUTURE -> Implement 'Permits' setting on the UI's register (for easy staff registration)

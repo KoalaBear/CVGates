@@ -11,7 +11,7 @@ def plate(request):
             try:
                 form.save()
                 return redirect('/plates/show')
-            except:
+            except Exception:
                 pass
     else:
         form = PlateNumberForm()
@@ -19,17 +19,26 @@ def plate(request):
 
 
 def show_plate(request):
-    plates = PlateNumber.objects.all()
+    if request.user.is_superuser:
+        plates = PlateNumber.objects.all()
+    else:
+        plates = PlateNumber.objects.filter(user=request.user)
     return render(request, "plates/show.html", {'plates': plates})
 
 
 def edit_plate(request, id):
     plate = PlateNumber.objects.get(id=id)
+    if not (request.user.is_superuser or plate.user.id == request.user.id):
+        plate = None
+
     return render(request, 'plates/edit.html', {'plate': plate})
 
 
 def update_plate(request, id):
     plate = PlateNumber.objects.get(id=id)
+    if not (request.user.is_superuser or plate.user.id == request.user.id):
+        plate = None
+
     form = PlateNumberForm(request.POST, instance=plate)
     if form.is_valid():
         form.save()
@@ -39,5 +48,8 @@ def update_plate(request, id):
 
 def destroy_plate(request, id):
     plate = PlateNumber.objects.get(id=id)
+    if not (request.user.is_superuser or plate.user.id == request.user.id):
+        plate = None
+
     plate.delete()
     return redirect("/plates/show")
