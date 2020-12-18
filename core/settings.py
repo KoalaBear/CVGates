@@ -6,6 +6,7 @@ Copyright (c) 2019 - present AppSeed.us
 import os
 
 from decouple import config
+from django.contrib import messages
 from unipath import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -128,3 +129,11 @@ STATICFILES_DIRS = (
 )
 #############################################################
 #############################################################
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}

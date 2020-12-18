@@ -10,6 +10,7 @@
 <main class="content">
 
     {% include 'includes/navigation.html' %}
+    {% include 'includes/messages.html' %}
 
     <div class="row">
         <div class="col-12 col-xl-12 mb-4">
@@ -27,7 +28,8 @@
                         <td>{{ plate.plate_number }}</td>
                         <td>{{ plate.user }}</td>
                         <td>
-                            <a href="/plates/edit/{{ plate.id }}"><span class="glyphicon glyphicon-pencil">Edit</span></a>
+                            <a href="/plates/edit/{{ plate.id }}"><span
+                                    class="glyphicon glyphicon-pencil">Edit</span></a>
                             <a href="/plates/delete/{{ plate.id }}">Delete</a>
                         </td>
                     </tr>

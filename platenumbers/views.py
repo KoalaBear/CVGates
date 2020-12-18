@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import redirect, render
 
 from platenumbers.forms import PlateNumberForm
@@ -12,6 +13,7 @@ def has_available_permits(request):
     if request.user.permits > used_permits:
         return True
     # TODO: Reached limit - can't create more error
+    messages.error(request, "Permits limit had been reached")
     return False
 
 
@@ -21,6 +23,7 @@ def plate(request):
         if form.is_valid():
             try:
                 form.save()
+                messages.success(request, "Successfully added")
                 return redirect('/plates/show')
             except Exception:
                 pass
@@ -41,26 +44,30 @@ def edit_plate(request, id):
     plate = PlateNumber.objects.get(id=id)
     if not (request.user.is_superuser or plate.user.id == request.user.id):
         plate = None
-
+        messages.error(request, "User not permitted to edit given Plate Number")
+    else:
+        messages.success(request, "Successfully edited")
     return render(request, 'plates/edit.html', {'plate': plate})
 
 
 def update_plate(request, id):
     plate = PlateNumber.objects.get(id=id)
     if not (request.user.is_superuser or plate.user.id == request.user.id):
-        plate = None
-
-    form = PlateNumberForm(request.POST, instance=plate)
-    if form.is_valid():
-        form.save()
-        return redirect("/plates/show")
+        messages.error(request, "User not permitted to edit given Plate Number")
+    else:
+        form = PlateNumberForm(request.POST, instance=plate)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Successfully edited")
+            return redirect("/plates/show")
     return render(request, 'plates/edit.html', {'plate': plate})
 
 
 def destroy_plate(request, id):
     plate = PlateNumber.objects.get(id=id)
     if not (request.user.is_superuser or plate.user.id == request.user.id):
-        plate = None
-
-    plate.delete()
+        messages.error(request, "User not permitted to destroy given Plate Number")
+    else:
+        plate.delete()
+        messages.success(request, "Successfully edited")
     return redirect("/plates/show")
