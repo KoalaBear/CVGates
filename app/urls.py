@@ -11,8 +11,9 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
+    path('index.html', lambda x: views.redirect('/')),
 
     # Matches any html file
-    # re_path(r'^.*\.*', views.pages, name='pages'), TODO: uncomment when moving on
+    re_path(r'^.*\.*', views.pages, name='pages')
 
 ]
