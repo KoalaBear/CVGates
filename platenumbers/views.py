@@ -12,32 +12,27 @@ def has_available_permits(request):
     used_permits = len(PlateNumber.objects.filter(user=request.user))
     if request.user.permits > used_permits:
         return True
-    # TODO: Reached limit - can't create more error
     messages.error(request, "Permits limit had been reached")
     return False
 
 
 def plate(request):
+    if request.user.is_superuser:
+        plates = PlateNumber.objects.all()
+    else:
+        plates = PlateNumber.objects.filter(user=request.user)
+
     if request.method == "POST" and has_available_permits(request):
         form = PlateNumberForm(request.POST)
         if form.is_valid():
             try:
                 form.save()
                 messages.success(request, "Successfully added")
-                return redirect('/plates/show')
             except Exception:
                 pass
     else:
         form = PlateNumberForm()
-    return render(request, 'plates/index.html', {'form': form})
-
-
-def show_plate(request):
-    if request.user.is_superuser:
-        plates = PlateNumber.objects.all()
-    else:
-        plates = PlateNumber.objects.filter(user=request.user)
-    return render(request, "plates/show.html", {'plates': plates})
+    return render(request, 'plates/index.html', {'form': form, 'plates': plates})
 
 
 def edit_plate(request, id):
@@ -59,7 +54,7 @@ def update_plate(request, id):
         if form.is_valid():
             form.save()
             messages.success(request, "Successfully edited")
-            return redirect("/plates/show")
+            return redirect("/plates")
     return render(request, 'plates/edit.html', {'plate': plate})
 
 
@@ -70,4 +65,4 @@ def destroy_plate(request, id):
     else:
         plate.delete()
         messages.success(request, "Successfully edited")
-    return redirect("/plates/show")
+    return redirect("/plates")
