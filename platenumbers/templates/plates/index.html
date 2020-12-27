@@ -1,0 +1,98 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<main class="content">
+
+    {% include 'includes/navigation.html' %}
+    {% include 'includes/messages.html' %}
+
+    <div class="row">
+        <div class="col-12 col-xl-12 mb-4">
+            <div class="col-12 mb-4">
+                <div class="card border-light shadow-sm">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h2 class="h5">Your Approved Vehicles [X/{{ request.user.permits }}]</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead>
+                            <th>ID</th>
+                            <th>Plate</th>
+                            <th>User</th>
+                            <th>Actions</th>
+                            </thead>
+                            <tbody>
+                            {% for plate in plates %}
+                            <tr>
+                                <td>{{ plate.id }}</td>
+                                <td>{{ plate.plate_number }}</td>
+                                <td>{{ plate.user }}</td>
+                                <td>
+                                    <a href="/plates/edit/{{ plate.id }}"><i
+                                            class="fas fa-pencil-alt"></i>Edit</span></a>
+                                    <i class="far fa-trash-alt"></i><a
+                                        href="/plates/delete/{{ plate.id }}">Delete</a></i>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <form method="POST" class="post-form" action="/plates/">
+            {% csrf_token %}
+            <div class="container text-center">
+                <br>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <h3>Add New Plate</h3>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Plate Number:</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="plate_number" name="plate_number"
+                               value="{{ plate.plate_number }}"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">User:</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="user" name="user" value="{{ plate.user }}"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    {% include 'includes/footer.html' %}
+
+</main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
