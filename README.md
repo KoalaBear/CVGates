@@ -4,16 +4,6 @@
 **You can now** Get rid of manual switches or remotes AND Easily limit the amount of vehicles per resident, all with a 10-minute setup!
 
 
-
-
-<!-- PROJECT SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
@@ -23,11 +13,9 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
-* [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
 
 
 
@@ -108,16 +96,9 @@ Distributed under the GPL V3 License. See `LICENSE` for more information.
 KoalaBear @ GitHub
 Project's Link: [https://github.com/KoalaBear/CVGates](https://github.com/KoalaBear/CVGates)
 
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
 [contributors-url]: https://github.com/KoalaBear/CVGates/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
 [forks-url]: https://github.com/KoalaBear/CVGates/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
 [stars-url]: https://github.com/KoalaBear/CVGates/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
 [issues-url]: https://github.com/KoalaBear/CVGates/issues
-[license-shield]: https://img.shields.io/github/license/KoalaBear/repo.svg?style=flat-square
 [license-url]: https://github.com/KoalaBear/CVGates/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/KoalaBear
 [product-screenshot]: resources/images/screenshot.png
