@@ -14,6 +14,6 @@ urlpatterns = [
     path('index.html', lambda x: views.redirect('/')),
 
     # Matches any html file
-    re_path(r'^.*\.*', views.pages, name='pages')
+    # re_path(r'^.*\.*', views.pages, name='pages')
 
 ]
