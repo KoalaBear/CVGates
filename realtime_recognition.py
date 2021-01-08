@@ -1,7 +1,8 @@
 from time import sleep
 
 from camera.grab_frame import grab_frame
-from gate_control.toggle import open_gate
+from config import MANUALLY_CLOSED_GATE, CLOSE_GATE_DELAY
+from gate_control.toggle import open_gate, close_gate
 from platenumbers.models import PlateNumber
 from recognition.recognize_plate import recognize_plate
 
@@ -21,6 +22,9 @@ def start_recognizing():
         if is_plate_in_db(plate_seen):
             open_gate()
             print(f"Gate opened for {plate_seen}")
+            if MANUALLY_CLOSED_GATE:
+                sleep(CLOSE_GATE_DELAY)
+                close_gate()
 
 
 def is_plate_in_db(plate_number):
