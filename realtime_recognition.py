@@ -6,8 +6,6 @@ from gate_control.toggle import open_gate, close_gate
 from platenumbers.models import PlateNumber
 from recognition.recognize_plate import recognize_plate
 
-DELAY_BETWEEN_FRAMES = 1
-
 
 def start_recognizing():
     while True:
