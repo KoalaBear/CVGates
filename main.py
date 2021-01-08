@@ -9,8 +9,8 @@ def main():
 
 
 if __name__ == '__main__':
-    server = threading.Thread(target=webserver.start)
-    server.start()
-    print("Started Server")
-    start_recognizing()
+    recognition = threading.Thread(target=start_recognizing)
+    recognition.start()
     print("Started Capturing & Recognizing")
+    webserver.start()
+    print("Started Server")
