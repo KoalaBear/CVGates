@@ -2,8 +2,8 @@ from time import sleep
 
 from camera.grab_frame import grab_frame
 from gate_control.toggle import open_gate
-from recognition.recognize_plate import recognize_plate
 from platenumbers.models import PlateNumber
+from recognition.recognize_plate import recognize_plate
 
 DELAY_BETWEEN_FRAMES = 1
 
