@@ -1,5 +1,5 @@
 import threading
-
+import logging
 import webserver
 from realtime_recognition import start_recognizing
 
@@ -11,6 +11,6 @@ def main():
 if __name__ == '__main__':
     recognition = threading.Thread(target=start_recognizing)
     recognition.start()
-    print("Started Capturing & Recognizing")
+    logging.debug("Started Capturing & Recognizing")
     webserver.start()
-    print("Started Server")
+    logging.debug("Started Server")
